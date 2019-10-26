@@ -1,0 +1,54 @@
+# Project
+local.py
+media/*
+cache/*
+logs/*
+static/*
+server_keys/*
+update.sh
+scripts/*
+daemon
+daemon.go
+cont_del.py
+get_dump.sh
+set_dump.sh
+venv/*
+/venv
+
+*.backup
+*.gz
+*.crt
+*.csr
+*.key
+*.key.org
+*.sh
+*.pid
+*.log
+*.sh
+*.cache
+*.db
+*.rdb
+*.ini
+*.conf
+*.sock
+!delete.me
+.vscode
+
+# Django
+*.pot
+*.pyc
+*.pyo
+
+# Scripts
+
+
+# OSX
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+.vagrant
+.project
+.pydevproject
