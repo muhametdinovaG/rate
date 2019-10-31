@@ -32,6 +32,7 @@
 
 
 
+
     </style>
 </head>
 <body>
@@ -82,29 +83,19 @@
             </dd>
             <dl class="type_text">
                 <dd class="combined-fields">
-                    <table class="table" style="background-color:#eee">
-                        <tr style="background-color:#eee">
-                            <td>
-                                <div class="combined-fields__item">
-                                    <label class="c_f_1" for="UniDbQuery_FromDate">c</label>
-                                    <input class="date-edit hasDatepicker" id="UniDbQuery_FromDate"
-                                           name="UniDbQuery.FromDate"
-                                           type="text" value="23.10.2019">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="background-color:#eee">
-                            <td>
-                                <div class="combined-fields__item">
-                                    <label class="c_f_2" for="UniDbQuery_ToDate">по</label>
-                                    <input class="date-edit hasDatepicker" id="UniDbQuery_ToDate"
-                                           name="UniDbQuery.ToDate"
-                                           type="text"
-                                           value="30.10.2019">
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="combined-fields__item">
+                        <label class="c_f_1" for="UniDbQuery_FromDate">c</label>
+                        <input class="date-edit hasDatepicker" id="UniDbQuery_FromDate"
+                               name="UniDbQuery.FromDate"
+                               type="text" value="23.10.2019">
+                    </div>
+                    <div class="combined-fields__item">
+                        <label class="c_f_2" for="UniDbQuery_ToDate">по</label>
+                        <input class="date-edit hasDatepicker" id="UniDbQuery_ToDate"
+                               name="UniDbQuery.ToDate"
+                               type="text"
+                               value="30.10.2019">
+                    </div>
                 </dd>
             </dl>
             <dl>
@@ -130,6 +121,7 @@
         </select>
 
     </div>
+    <input id="myInput" type="text" placeholder="Search..">
     <table id="myTable" class="table table-bordered sortable" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -171,19 +163,26 @@ $(document).ready(function(){
     $('#myTable').dataTable();
 });
 
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
  getPagination('#myTable');
 	function getPagination (table){
 
         		var lastPage = 1 ;
 
 		  $('#maxRows').on('change',function(evt){
-		  	//$('.paginationprev').html('');						// reset pagination
-
 
 		lastPage = 1 ;
          $('.pagination').find("li").slice(1, -1).remove();
-		  	var trnum = 0 ;									// reset tr counter
-		  	var maxRows = parseInt($(this).val());			// get Max Rows from select option
+		  	var trnum = 0 ;
+		  	var maxRows = parseInt($(this).val());
 
 		  	if(maxRows == 5000 ){
 
@@ -193,18 +192,18 @@ $(document).ready(function(){
 		  		$('.pagination').show();
 		  	}
 
-		  	var totalRows = $(table+' tbody tr').length;		// numbers of rows
-			 $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
-			 	trnum++;									// Start Counter
-			 	if (trnum > maxRows ){						// if tr number gt maxRows
+		  	var totalRows = $(table+' tbody tr').length;
+			 $(table+' tr:gt(0)').each(function(){
+			 	trnum++;
+			 	if (trnum > maxRows ){
 
-			 		$(this).hide();							// fade it out
-			 	}if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
-			 });											//  was fade out to fade it in
-			 if (totalRows > maxRows){						// if tr total rows gt max rows option
-			 	var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..
-			 												//	numbers of pages
-			 	for (var i = 1; i <= pagenum ;){			// for each page append pagination li
+			 		$(this).hide();
+			 	}if (trnum <= maxRows ){$(this).show();}
+			 });
+			 if (totalRows > maxRows){
+			 	var pagenum = Math.ceil(totalRows/maxRows);
+
+			 	for (var i = 1; i <= pagenum ;){
 			 	$('.pagination #prev').before('<li data-page="'+i+'">\
 								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
 								    </li>').show();
@@ -249,6 +248,7 @@ $(document).ready(function(){
 
 								// END OF PAGINATION
 	}
+
 
 
 
