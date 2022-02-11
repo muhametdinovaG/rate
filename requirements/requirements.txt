@@ -10,7 +10,7 @@ multidict==4.5.2
 numpy==1.17.3
 pandas==0.25.2
 pipenv==2018.11.26
-protobuf==3.10.0
+protobuf==3.15.0
 psycopg2-binary==2.8.4
 python-dateutil==2.8.0
 python-utils==2.3.0
