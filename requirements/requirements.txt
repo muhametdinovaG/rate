@@ -7,7 +7,7 @@ django-six==1.0.4
 djangorestframework==3.9.1
 idna==2.8
 multidict==4.5.2
-numpy==1.17.3
+numpy==1.22.0
 pandas==0.25.2
 pipenv==2018.11.26
 protobuf==3.10.0
